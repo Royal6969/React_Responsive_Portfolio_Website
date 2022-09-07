@@ -27,3 +27,33 @@ This file will be the only with js extension, rest will be jsx files.
 
 Note: By the way, create a index.css in src folder too.
 
+# 1. Let's create all components
+
+## 1.1. App.jsx
+
+Create and App.jsx file in src folder.
+
+Write *"rafce"* to snip the basic estructure of a *"React Arrow Functional Component Export"*
+
+```js
+import React from 'react'
+
+const App = () => {
+  return (
+    <div>App</div>
+  )
+}
+
+export default App
+```
+
+## 1.2. Write basic imports in index.js
+
+```js
+import { ReactDOM } from "react";
+import App from './App';
+import './index.css';
+
+ReactDOM.render(<App/>, document.querySelector("#root"));
+```
+
