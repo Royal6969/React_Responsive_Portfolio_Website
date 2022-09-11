@@ -325,3 +325,201 @@ const Header = () => {
 export default Header
 ```
 
+## 2.2. Header.css
+
+```css
+header {
+    height: 100vh;
+    padding-top: 7rem;
+    /* overflow: hidden; */
+    margin-bottom: 15rem;
+}
+
+.header__container {
+    text-align: center;
+    height: 100%;
+    position: relative;
+}
+
+/* =================== CTA ================= */
+
+.cta {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+}
+
+/* ============= Header Socials ============ */
+
+.header__socials {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    position: absolute;
+    left: 0;
+    bottom: 3rem;
+}
+
+.header__socials::after {
+    content: '';
+    width: 1px;
+    height: 2rem;
+    background: var(--color-primary);
+}
+
+/* ================= ME.png ================== */
+
+.me {
+    background: linear-gradient(var(--color-primary), transparent);
+    width: 22rem;
+    height: 30rem;
+    position: absolute;
+    left: calc(50% - 11rem);
+    margin-top: 4rem;
+    border-radius: 12rem 12rem 0 0;
+    overflow: hidden;
+    padding: 5rem 1.5rem 1.5rem 1.5rem;
+}
+
+/* ================ SCROLL DOWN ============== */
+
+.scroll__down {
+    position: absolute;
+    right: -2.3rem;
+    bottom: 5rem;
+    transform: rotate(90deg);
+    font-weight: 300;
+    font-size: 0.9rem;
+}
+
+/* ===================== MEDIA QUERIES (MEDIUM DEVICES) ================= */
+@media screen and (max-width: 1024px) {
+    header {
+        height: 68vh;
+    }
+}
+
+/* ===================== MEDIA QUERIES (SMALL DEVICES) ================= */
+@media screen and (max-width: 600px) {
+    header {
+        height: 100vh;
+    }
+
+    .header__socials,
+    .scroll__down {
+        display: none;
+    }
+}
+```
+
+# 3. Navbar component
+
+## 3.1. Navbar development
+
+```jsx
+import React from 'react'
+import '../css/Navbar.css'
+import {AiOutlineHome} from 'react-icons/ai'
+import { AiOutlineUser } from 'react-icons/ai'
+import {BiBook} from 'react-icons/bi'
+import {RiServiceLine} from 'react-icons/ri'
+import { BiMessageSquareDetail } from 'react-icons/bi'
+
+const Navbar = () => {
+  return (
+    <nav>
+      <a href="#header" className='active'><AiOutlineHome/></a>
+      <a href="#about"><AiOutlineUser/></a>
+      <a href="#experience"><BiBook/></a>
+      <a href="#services"><RiServiceLine/></a>
+      <a href="#contact"><BiMessageSquareDetail/></a>
+    </nav>
+  )
+}
+
+export default Navbar
+```
+
+## 3.2. Navbar.css
+
+```css
+nav {
+    background: rgba(0, 0, 0, 0.3);
+    width: max-content;
+    display: block;
+    padding: 0.7rem 1.7rem;
+    z-index: 2;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 2rem;
+    display: flex;
+    gap: 0.8rem;
+    border-radius: 3rem;
+    backdrop-filter: blur(15px);
+}
+
+nav a {
+    background: transparent;
+    padding: 0.9rem;
+    border-radius: 50%;
+    display: flex;
+    color: var(--color-light);
+    font-size: 1.1rem;
+}
+
+nav a:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+nav a.active {
+    background: var(--color-bg);
+    color: var(--color-white);
+}
+```
+
+### Active class functionality
+
+To do this, we have to import the useState hook.
+
+With the classname, we have to check wich section we're in with the id section, and let to know to useState hook, what class have to set as "active".
+
+```jsx
+const Navbar = () => {
+
+  const [activeNav, setActiveNav] = useState('#');
+
+  return (
+    <nav>
+      <a href="#header" className={activeNav === '#' ? 'active' : ''} 
+      onClick={() => setActiveNav('#')}
+      >
+        <AiOutlineHome/>
+      </a>
+      <a href="#about"  className={activeNav === '#about' ? 'active' : ''} 
+      onClick={() => setActiveNav('#about')}
+      >
+        <AiOutlineUser/>
+      </a>
+      <a href="#experience" className={activeNav === '#experience' ? 'active' : ''} 
+      onClick={() => setActiveNav('#experience')}
+      >
+        <BiBook/>
+      </a>
+      <a href="#services" className={activeNav === '#services' ? 'active' : ''} 
+      onClick={() => setActiveNav('#services')}
+      >
+        <RiServiceLine/>
+      </a>
+      <a href="#contact" className={activeNav === '#contact' ? 'active' : ''} 
+      onClick={() => setActiveNav('#contact')}
+      >
+        <BiMessageSquareDetail/>
+      </a>
+    </nav>
+  )
+}
+```
+
