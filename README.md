@@ -50,11 +50,14 @@ export default App
 ## 1.2. Write basic imports in index.js
 
 ```js
-import { ReactDOM } from "react";
+import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
 
-ReactDOM.render(<App/>, document.querySelector("#root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <App />
+);
 ```
 
 ## 1.3. First view in our browser
@@ -240,5 +243,85 @@ img {
         margin-bottom: 2rem;
     }
 }
+```
+
+# 2. Header component
+
+## 2.1. header development
+
+We're going to create two components more for Header.
+
+- CTA.jsx (for cv buttons)
+- HeaderSocials.jsx (for social icons)
+
+```jsx
+import React from 'react'
+import '../css/CTA.css'
+import CV from '../../src/assets/cv.pdf'
+
+const CTA = () => {
+  return (
+    <div className='cta'>
+        <a href={CV} download className='btn'>Download CV</a>
+        <a href="#contact" className='btn btn-primary'>Let's talk</a>
+    </div>
+  )
+}
+
+export default CTA
+```
+
+To install react-icons library just run: `npm install react-icons --save`
+
+```jsx
+import React from 'react'
+import '../css/HeaderSocials.css'
+import {BsLinkedin} from 'react-icons/bs'
+import {FaGithub} from 'react-icons/fa'
+import {FiDribbble} from 'react-icons/fi'
+
+const HeaderSocials = () => {
+  return (
+    <div className='header__socials'>
+        <a href="https://linkedin.com" target="_blank" rel="noreferrer"><BsLinkedin/></a>
+        <a href="https://github.com" target="_blank" rel="noreferrer"><FaGithub/></a>
+        <a href="https://dribbble.com" target="_blank" rel="noreferrer"><FiDribbble/></a>
+    </div>
+  )
+}
+
+export default HeaderSocials
+```
+
+And finally, the header component would be:
+
+```jsx
+import React from 'react'
+import '../css/Header.css'
+import CTA from './CTA'
+import ME from '../../src/assets/img/me.png'
+import HeaderSocials from './HeaderSocials'
+
+const Header = () => {
+  return (
+    <header>
+      <div className="container header__container">
+        <h5>Hello I'm</h5>
+        <h1>NombreApellido1</h1>
+        <h5 className="text-light">Fullstack Developer</h5>
+        <CTA/>
+        <HeaderSocials/>
+
+        <div className="me">
+          <img src={ME} alt="me" />
+        </div>
+
+        <a href="#contact" className='scroll__down'>Scroll Down</a>
+      </div>
+    </header>
+  )
+}
+
+export default Header
 ```
 
