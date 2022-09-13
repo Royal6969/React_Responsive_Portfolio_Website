@@ -523,3 +523,172 @@ const Navbar = () => {
 }
 ```
 
+# 4. About component
+
+## 4.1. About section development
+
+```jsx
+import React from 'react'
+import '../css/About.css'
+import ME from '../../src/assets/img/me-about.jpg'
+import {FaAward} from 'react-icons/fa'
+import {FiUsers} from 'react-icons/fi'
+import {VscFolderLibrary} from 'react-icons/vsc'
+
+const About = () => {
+  return (
+    <section id='about'>
+      <h5>Get To Know</h5>
+      <h2>About Me</h2>
+
+      <div className="container about__container">
+        <div className="about__me">
+          <div className="about__me-image">
+            <img src={ME} alt="about" />
+          </div>
+        </div>
+
+        <div className="about__content">
+          <div className="about__cards">
+            <article className='about__card'>
+              <FaAward className='about__icon' />
+              <h5>Experience</h5>
+              <small>3+ Years Working</small>
+            </article>
+
+            <article className='about__card'>
+              <FiUsers className='about__icon' />
+              <h5>Clients</h5>
+              <small>200+ Worldwide</small>
+            </article>
+
+            <article className='about__card'>
+              <VscFolderLibrary className='about__icon' />
+              <h5>Projects</h5>
+              <small>80+ Compiled</small>
+            </article>
+          </div>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores et velit quisquam nesciunt fugiat laudantium culpa veritatis consequuntur magni, itaque odio saepe exercitationem. Optio ad, doloremque praesentium error, sequi in libero, dolores quasi minima nesciunt distinctio. Magni corporis possimus ipsa tempora, illum sint aut, sapiente eos, deleniti culpa repellendus quidem?
+          </p>
+
+          <a href="#contact" className='btn btn-primary'>Let's talk</a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default About
+```
+
+## 4.2. About.css
+
+```css
+.about__container {
+    display: grid;
+    grid-template-columns: 35% 50%;
+    gap: 15%;
+}
+
+.about__me {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 2rem;
+    background: linear-gradient(45deg, transparent, var(--color-primary), transparent);
+    display: grid;
+    place-items: center;
+}
+
+.about__me-image {
+    border-radius: 2rem;
+    overflow: hidden;
+    transform: rotate(10deg);
+    transition: var(--transition);
+}
+
+.about__me-image:hover {
+    transform: rotate(0);
+}
+
+.about__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.about__card {
+    background: var(--color-bg-variant);
+    border: 1px solid transparent;
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.about__card:hover {
+    background: transparent;
+    border-color: var(--color-primary-variant);
+    cursor: default;
+}
+
+.about__icon {
+    color: var(--color-primary);
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.about__card h5 {
+    font-size: 0.95rem;
+}
+
+.about__card small {
+    font-size: 0.7rem;
+    color: var(--color-light);
+}
+
+.about__content p {
+    margin: 2rem 0 2.6rem;
+    color: var(--color-light);
+}
+
+/* ===================== MEDIA QUERIES (MEDIUM DEVICES) ================= */
+@media screen and (max-width: 1024px) {
+    .about__container {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .about__me {
+        width: 50%;
+        margin: 2rem auto 4rem;
+    }
+
+    .about__content p {
+        margin: 1rem 0 1.5rem;
+    }
+}
+
+/* ===================== MEDIA QUERIES (SMALL DEVICES) ================= */
+@media screen and (max-width: 600px) {
+    .about__me {
+        width: 65%;
+        margin: 0 auto 3rem;
+    }
+
+    .about__cards {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .about__content {
+        text-align: center;
+    }
+
+    .about__content p {
+        margin: 1.5rem 0;
+    }
+}
+```
+
