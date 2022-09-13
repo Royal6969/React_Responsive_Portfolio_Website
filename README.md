@@ -1214,3 +1214,184 @@ export default Portfolio
 }
 ```
 
+# 8. Testimonials component
+
+## 8.1. Testimonials section development
+
+```jsx
+import React from 'react'
+import '../css/Testimonials.css'
+import AVTR1 from '../../src/assets/img/avatar1.jpg'
+import AVTR2 from '../../src/assets/img/avatar2.jpg'
+import AVTR3 from '../../src/assets/img/avatar3.jpg'
+import AVTR4 from '../../src/assets/img/avatar4.jpg'
+
+const Testimonials = () => {
+  return (
+    <section id='testimonials'>
+      <h5>Review from Clients</h5>
+      <h2>Testimonials</h2>
+
+      <div className="container testimonials__container">
+        <article className='testimonial'>
+          <div className="client__avatar">
+            <img src={AVTR1} alt="Avatar" />
+          </div>
+          <h5 className='client__name'>Client Name</h5>
+          <small className='client__review'>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam adipisci dolores consectetur, blanditiis, eius perspiciatis aliquid sapiente consequatur quas enim molestiae! Perspiciatis ullam qui ratione sapiente sed ipsa vel mollitia deleniti ad exercitationem eum, laudantium numquam fugiat adipisci ut voluptas atque eos esse omnis soluta eius natus modi magnam. Illum!
+          </small>
+        </article>
+
+        <article className='testimonial'>
+          <div className="client__avatar">
+            <img src={AVTR2} alt="Avatar" />
+          </div>
+          <h5 className='client__name'>Client Name</h5>
+          <small className='client__review'>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam adipisci dolores consectetur, blanditiis, eius perspiciatis aliquid sapiente consequatur quas enim molestiae! Perspiciatis ullam qui ratione sapiente sed ipsa vel mollitia deleniti ad exercitationem eum, laudantium numquam fugiat adipisci ut voluptas atque eos esse omnis soluta eius natus modi magnam. Illum!
+          </small>
+        </article>
+
+        <article className='testimonial'>
+          <div className="client__avatar">
+            <img src={AVTR3} alt="Avatar" />
+          </div>
+          <h5 className='client__name'>Client Name</h5>
+          <small className='client__review'>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam adipisci dolores consectetur, blanditiis, eius perspiciatis aliquid sapiente consequatur quas enim molestiae! Perspiciatis ullam qui ratione sapiente sed ipsa vel mollitia deleniti ad exercitationem eum, laudantium numquam fugiat adipisci ut voluptas atque eos esse omnis soluta eius natus modi magnam. Illum!
+          </small>
+        </article>
+
+        <article className='testimonial'>
+          <div className="client__avatar">
+            <img src={AVTR4} alt="Avatar" />
+          </div>
+          <h5 className='client__name'>Client Name</h5>
+          <small className='client__review'>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam adipisci dolores consectetur, blanditiis, eius perspiciatis aliquid sapiente consequatur quas enim molestiae! Perspiciatis ullam qui ratione sapiente sed ipsa vel mollitia deleniti ad exercitationem eum, laudantium numquam fugiat adipisci ut voluptas atque eos esse omnis soluta eius natus modi magnam. Illum!
+          </small>
+        </article>
+      </div>
+    </section>
+  )
+}
+
+export default Testimonials
+```
+
+## 8.2. Testimonials.css
+
+```css
+.container.testimonials__container {
+    width: 40%;
+}
+
+.client__avatar {
+    width: 4rem;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    border: 0.4rem solid var(--color-primary-variant);
+}
+
+.testimonial {
+    background: var(--color-bg-variant);
+    text-align: center;
+    padding: 2rem;
+    border-radius: 2rem;
+    user-select: none;
+}
+
+.client__review {
+    color: var(--color-light);
+    font-weight: 300;
+    display: block;
+    width: 80%;
+    margin: 0.8rem auto 0;
+}
+
+/* ===================== MEDIA QUERIES (MEDIUM DEVICES) ================= */
+@media screen and (max-width: 1024px) {
+    .container.testimonials__container {
+        width: 60%;
+    }
+}
+
+/* ===================== MEDIA QUERIES (SMALL DEVICES) ================= */
+@media screen and (max-width: 600px) {
+    .container.testimonials__container {
+        width: var(--container-width-sm);
+    }
+
+    .client__review {
+        width: var(--container-width-sm);
+    }
+}
+```
+
+## 8.3. Swiper.js
+
+To install swiper library, just run: `npm install swiper`
+
+```jsx
+const Testimonials = () => {
+  return (
+    <section id='testimonials'>
+      <h5>Review from Clients</h5>
+      <h2>Testimonials</h2>
+
+      <Swiper 
+        className="container testimonials__container"
+        // install Swiper modules
+        modules={[Pagination]}
+        spaceBetween={40}
+        slidesPerView={1}
+        pagination={{ clickable: true }}
+      >
+        <SwiperSlide className='testimonial'>
+          <div className="client__avatar">
+            <img src={AVTR1} alt="Avatar" />
+          </div>
+          <h5 className='client__name'>Client Name</h5>
+          <small className='client__review'>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam adipisci dolores consectetur, blanditiis, eius perspiciatis aliquid sapiente consequatur quas enim molestiae! Perspiciatis ullam qui ratione sapiente sed ipsa vel mollitia deleniti ad exercitationem eum, laudantium numquam fugiat adipisci ut voluptas atque eos esse omnis soluta eius natus modi magnam. Illum!
+          </small>
+        </SwiperSlide>
+
+        <SwiperSlide className='testimonial'>
+          <div className="client__avatar">
+            <img src={AVTR2} alt="Avatar" />
+          </div>
+          <h5 className='client__name'>Client Name</h5>
+          <small className='client__review'>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam adipisci dolores consectetur, blanditiis, eius perspiciatis aliquid sapiente consequatur quas enim molestiae! Perspiciatis ullam qui ratione sapiente sed ipsa vel mollitia deleniti ad exercitationem eum, laudantium numquam fugiat adipisci ut voluptas atque eos esse omnis soluta eius natus modi magnam. Illum!
+          </small>
+        </SwiperSlide>
+
+        <SwiperSlide className='testimonial'>
+          <div className="client__avatar">
+            <img src={AVTR3} alt="Avatar" />
+          </div>
+          <h5 className='client__name'>Client Name</h5>
+          <small className='client__review'>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam adipisci dolores consectetur, blanditiis, eius perspiciatis aliquid sapiente consequatur quas enim molestiae! Perspiciatis ullam qui ratione sapiente sed ipsa vel mollitia deleniti ad exercitationem eum, laudantium numquam fugiat adipisci ut voluptas atque eos esse omnis soluta eius natus modi magnam. Illum!
+          </small>
+        </SwiperSlide>
+
+        <SwiperSlide className='testimonial'>
+          <div className="client__avatar">
+            <img src={AVTR4} alt="Avatar" />
+          </div>
+          <h5 className='client__name'>Client Name</h5>
+          <small className='client__review'>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam adipisci dolores consectetur, blanditiis, eius perspiciatis aliquid sapiente consequatur quas enim molestiae! Perspiciatis ullam qui ratione sapiente sed ipsa vel mollitia deleniti ad exercitationem eum, laudantium numquam fugiat adipisci ut voluptas atque eos esse omnis soluta eius natus modi magnam. Illum!
+          </small>
+        </SwiperSlide>
+      </Swiper>
+    </section>
+  )
+}
+```
+
