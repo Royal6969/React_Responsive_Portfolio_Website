@@ -1395,3 +1395,207 @@ const Testimonials = () => {
 }
 ```
 
+# 9. Contact component
+
+## 9.1. Contact section development
+
+```jsx
+import React from 'react'
+import '../css/Contact.css'
+import {SiGmail} from 'react-icons/si'
+import {AiOutlineWhatsApp} from 'react-icons/ai'
+import {AiOutlineInstagram} from 'react-icons/ai'
+
+const Contact = () => {
+  return (
+    <section id='contact'>
+      <h5>Get In Touch</h5>
+      <h2>Contact Me</h2>
+
+      <div className="container contact__containe">
+        <div className="contact__options">
+          <article className='contact__option'>
+            <SiGmail className='contact__option-icon' />
+            <h4>Email</h4>
+            <h5>test@gmail.com</h5>
+            <a href="mailto:test@gmail.com" target="_blank" rel="noreferrer">Send an email</a>
+          </article>
+
+          <article className='contact__option'>
+            <AiOutlineWhatsApp className='contact__option-icon' />
+            <h4>WhatsApp</h4>
+            <h5>+34 600 12 34 56</h5>
+            <a href="https://wa.me/34600123456"  target="_blank" rel="noreferrer">Send a message</a>
+          </article>
+
+          <article className='contact__option'>
+            <AiOutlineInstagram className='contact__option-icon' />
+            <h4>Instagram</h4>
+            <h5>@userInstagram</h5>
+            <a href="https://instagram.com"  target="_blank" rel="noreferrer">Add me as friend</a>
+          </article>
+        </div>
+  
+        <form action="">
+          <input type="text" name="name" id="name" placeholder='name' required />
+          <input type="email" name='email' id='email' placeholder='email' required />
+          <textarea name="message" id="message" rows="10" placeholder='your message' required></textarea>
+          <button type='submit' className='btn btn-primary'>Send Message</button>
+        </form>
+      </div>
+    </section>
+  )
+}
+
+export default Contact
+```
+
+## 9.2. Contact.css
+
+```css
+.container.contact__container {
+    width: 58%;
+    display: grid;
+    grid-template-columns: 30% 58%;
+    gap: 12%;
+}
+
+.contact__options {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-bottom: 2.5rem; /* ojo */
+}
+
+.contact__option {
+    background: var(--color-bg-variant);
+    padding: 1.2rem;
+    border-radius: 1.2rem;
+    text-align: center;
+    border: 1px solid transparent;
+    transition: var(--transition);
+}
+
+.contact__option:hover {
+    background: transparent;
+    border-color: var(--color-primary-variant);
+}
+
+.contact__option-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.contact__option a {
+    margin-top: 0.7rem;
+    display: inline-block;
+    font-size: 0.8rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-bottom: 5rem; /* ojo */
+}
+
+input, textarea {
+    width: 100%;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background: transparent;
+    border: 2px solid var(--color-primary-variant);
+    resize: none;
+    color: var(--color-white);
+}
+
+/* ===================== MEDIA QUERIES (MEDIUM DEVICES) ================= */
+@media screen and (max-width: 1024px) {
+    .container.contact__container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+/* ===================== MEDIA QUERIES (SMALL DEVICES) ================= */
+@media screen and (max-width: 600px) {
+    .container.contact__container {
+        width: var(--container-width-sm);
+    }
+}
+```
+
+## 9.3. Email.js
+
+Firstable, you have to SignIn or SignUp in EmailJs: https://emailjs.com
+
+Once you've done it, you have to create a new service (gmail), and also you have to create a new template... it's necessary that you copy and save in your clipboard, the service_id, the template_id, and the public_key.
+
+![](./src/assets/img/readme/1.png)
+
+![](./src/assets/img/readme/2.png)
+
+![](./src/assets/img/readme/3.png)
+
+![](./src/assets/img/readme/4.png)
+
+To install emailjs library just run: `npm install emailjs-com --save`
+
+```jsx
+const Contact = () => {
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    e.target.reset();
+
+    emailjs.sendForm('service_ubz2yzn', 'template_i1wgo1o', form.current, 'gf8dryPUX0DRAMY-z')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
+
+  return (
+    <section id='contact'>
+      <h5>Get In Touch</h5>
+      <h2>Contact Me</h2>
+
+      <div className="container contact__containe">
+        <div className="contact__options">
+          <article className='contact__option'>
+            <SiGmail className='contact__option-icon' />
+            <h4>Email</h4>
+            <h5>test@gmail.com</h5>
+            <a href="mailto:test@gmail.com" target="_blank" rel="noreferrer">Send an email</a>
+          </article>
+
+          <article className='contact__option'>
+            <AiOutlineWhatsApp className='contact__option-icon' />
+            <h4>WhatsApp</h4>
+            <h5>+34 600 12 34 56</h5>
+            <a href="https://wa.me/34600123456"  target="_blank" rel="noreferrer">Send a message</a>
+          </article>
+
+          <article className='contact__option'>
+            <AiOutlineInstagram className='contact__option-icon' />
+            <h4>Instagram</h4>
+            <h5>@userInstagram</h5>
+            <a href="https://instagram.com"  target="_blank" rel="noreferrer">Add me as friend</a>
+          </article>
+        </div>
+  
+        <form ref={form} onSubmit={sendEmail}>
+          <input type="text" name="name" id="name" placeholder='name' required />
+          <input type="email" name='email' id='email' placeholder='email' required />
+          <textarea name="message" id="message" rows="10" placeholder='your message' required></textarea>
+          <button type='submit' className='btn btn-primary'>Send Message</button>
+        </form>
+      </div>
+    </section>
+  )
+}
+```
+
