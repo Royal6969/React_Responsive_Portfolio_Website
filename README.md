@@ -1550,7 +1550,7 @@ const Contact = () => {
     e.preventDefault();
     e.target.reset();
 
-    emailjs.sendForm('service_ubz2yzn', 'template_i1wgo1o', form.current, 'gf8dryPUX0DRAMY-z')
+    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, 'YOUR_PUBLIC_KEY')
       .then((result) => {
           console.log(result.text);
       }, (error) => {
@@ -1596,6 +1596,119 @@ const Contact = () => {
       </div>
     </section>
   )
+}
+```
+
+# 10. Footer component
+
+## 10.1. Footer section development
+
+```jsx
+import React from 'react'
+import '../css/Footer.css'
+import {FaFacebook} from 'react-icons/fa'
+import {FiInstagram} from 'react-icons/fi'
+import {IoLogoTwitter} from 'react-icons/io'
+import {AiOutlineCopyrightCircle} from 'react-icons/ai'
+
+const Footer = () => {
+  return (
+    <footer>
+      <a href="#header" className='footer__logo'>NombreUsuario</a>
+
+      <ul className='permalinks'>
+        <li><a href="#header">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experiences">Experiences</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div className="footer__socials">
+        <a href="hhtps://facebook.com"><FaFacebook /></a>
+        <a href="hhtps://instagram.com"><FiInstagram /></a>
+        <a href="hhtps://twitter.com"><IoLogoTwitter /></a>
+      </div>
+
+      <div className="footer__copyright">
+        <small><AiOutlineCopyrightCircle/> NombreUsuario. All rights reserved.</small>
+      </div>
+    </footer>
+  )
+}
+
+export default Footer
+```
+
+## 10.2. Footer.css
+
+```css
+footer {
+    background: var(--color-primary);
+    padding: 3rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 7rem;
+}
+
+footer a {
+    color: var(--color-bg);
+}
+
+.footer__logo {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    display: inline-block;
+}
+
+.permalinks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin: 0 auto 3rem;
+}
+
+.footer__socials {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+}
+
+.footer__socials a {
+    background: var(--color-bg);
+    color: var(--color-white);
+    padding: 0.8rem;
+    border-radius: 0.7rem;
+    display: flex;
+    border: 1px solid transparent;
+}
+
+.footer__socials a:hover {
+    background: transparent;
+    color: var(--color-bg);
+    border-color: var(--color-bg);
+}
+
+.footer__copyright {
+    margin-bottom: 4rem;
+    color: var(--color-bg);
+}
+
+/* ===================== MEDIA QUERIES (SMALL DEVICES) ================= */
+@media screen and (max-width: 600px) {
+    .permalinks {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .footer__socials {
+        margin-bottom: 2.6rem;
+    }
 }
 ```
 
